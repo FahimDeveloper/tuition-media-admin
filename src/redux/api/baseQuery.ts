@@ -30,13 +30,9 @@ export const baseQueryWithRefreshToken: BaseQueryFn<
 > = async (args, api, extraOptions): Promise<any> => {
   let result = await baseQuery(args, api, extraOptions);
   if (result?.error?.status === 401) {
-    const token = (api.getState() as RootState).auth.refreshToken;
     const res = await fetch(`${baseUrl.AUTH_REFRESH_URL}`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ refresh_token: token }),
+      credentials: "include",
     });
     const data = await res.json();
     if (data.results) {

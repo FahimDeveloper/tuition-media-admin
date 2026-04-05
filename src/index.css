@@ -2,9 +2,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
 @import "tailwindcss";
 @theme {
-  --color-primary: #6d8c85;
-  --color-secondary: #9cb7b0;
-  --color-neutral: #07133d;
+  --color-primary: #355f92;
+  --color-secondary: #1f3755;
+  --color-neutral: #f9f7f7;
 }
 
 body {

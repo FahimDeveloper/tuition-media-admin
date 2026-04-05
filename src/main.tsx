@@ -14,18 +14,18 @@ createRoot(document.getElementById("root")!).render(
       <ConfigProvider
         theme={{
           token: {
-            colorPrimary: "#6D8C85",
+            colorPrimary: "#355F92",
             borderRadius: 5,
             fontFamily: "Manrope",
           },
           components: {
             Menu: {
-              itemHoverBg: "#6D8C85",
+              itemHoverBg: "#355F92",
               itemHoverColor: "#ffffff",
               itemColor: "#4B4B4B",
-              itemSelectedBg: "#6D8C85",
+              itemSelectedBg: "#355F92",
               itemSelectedColor: "#ffffff",
-              horizontalItemSelectedColor: "#6D8C85",
+              horizontalItemSelectedColor: "#355F92",
             },
           },
         }}

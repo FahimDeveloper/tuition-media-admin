@@ -1,0 +1,65 @@
+import type { IncomingQueryType } from "../../../types/index.types";
+import type { TLead } from "../../../types/lead.types";
+import { leadApiSlice } from "../../api/httpSlice";
+
+const leadApi = leadApiSlice.injectEndpoints({
+  endpoints: (builder) => ({
+    getNewLeads: builder.query<IncomingQueryType<TLead>, any>({
+      query: (params) => ({
+        url: "/leads/new",
+        method: "GET",
+        params,
+      }),
+      providesTags: ["NewLeads"],
+    }),
+    getAssignedLeads: builder.query<IncomingQueryType<any>, any>({
+      query: (params) => ({
+        url: "/leads/assigned",
+        method: "GET",
+        params,
+      }),
+      providesTags: ["AssignedLeads"],
+    }),
+    getAssignedOwnLeads: builder.query<IncomingQueryType<any>, any>({
+      query: ({ id, params }) => ({
+        url: `/leads/assigned/own/${id}`,
+        method: "GET",
+        params,
+      }),
+      providesTags: ["AssignedOwnLeads"],
+    }),
+    createLead: builder.mutation({
+      query: (body) => ({
+        url: "/leads/create",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["NewLeads", "AssignedLeads", "AssignedOwnLeads"],
+    }),
+    leadAssign: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `/leads/assigned/${id}`,
+        method: "PATCH",
+        body,
+      }),
+      invalidatesTags: ["NewLeads", "AssignedLeads", "AssignedOwnLeads"],
+    }),
+    updateLead: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `/leads/update/${id}`,
+        method: "PATCH",
+        body,
+      }),
+      invalidatesTags: ["NewLeads", "AssignedLeads", "AssignedOwnLeads"],
+    }),
+  }),
+});
+
+export const {
+  useCreateLeadMutation,
+  useGetAssignedLeadsQuery,
+  useGetNewLeadsQuery,
+  useGetAssignedOwnLeadsQuery,
+  useLeadAssignMutation,
+  useUpdateLeadMutation,
+} = leadApi;

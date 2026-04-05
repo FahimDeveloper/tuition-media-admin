@@ -21,7 +21,7 @@ const MainLayout = () => {
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Yes",
-      confirmButtonColor: "#6d8c85",
+      confirmButtonColor: "#355F92",
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(loggedOutUser());
