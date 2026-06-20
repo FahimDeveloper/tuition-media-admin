@@ -1,6 +1,12 @@
 import { lazy } from "react";
 import LazyLoad from "../components/common/LozyLoad";
-import Jobs from "../pages/Jobs/Jobs";
+const DirectLeads = LazyLoad(
+  lazy(() => import("../pages/Leads/DirectLeads/DirectLeads")),
+);
+const Jobs = LazyLoad(lazy(() => import("../pages/Jobs/Jobs")));
+const RunningJobs = LazyLoad(
+  lazy(() => import("../pages/RunningJobs/RunningJobs")),
+);
 
 const NewLeads = LazyLoad(
   lazy(() => import("../pages/Leads/NewLeads/NewLeads")),
@@ -33,6 +39,11 @@ export const superAdminPaths = [
         element: <NewLeads />,
       },
       {
+        name: "Direct Leads",
+        path: "direct-leads",
+        element: <DirectLeads />,
+      },
+      {
         name: "Assigned Leads",
         path: "assigned-leads",
         element: <AssignedLeads />,
@@ -55,7 +66,7 @@ export const superAdminPaths = [
       {
         name: "Running Jobs",
         path: "running-jobs",
-        element: <Jobs />,
+        element: <RunningJobs />,
       },
     ],
   },

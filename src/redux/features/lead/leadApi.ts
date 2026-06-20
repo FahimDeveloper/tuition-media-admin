@@ -12,6 +12,13 @@ const leadApi = leadApiSlice.injectEndpoints({
       }),
       providesTags: ["NewLeads"],
     }),
+    getDirectLeads: builder.query<IncomingQueryType<TLead>, any>({
+      query: (params) => ({
+        url: "/direct-leads",
+        method: "GET",
+        params,
+      }),
+    }),
     getAssignedLeads: builder.query<IncomingQueryType<any>, any>({
       query: (params) => ({
         url: "/leads/assigned",
@@ -62,4 +69,5 @@ export const {
   useGetAssignedOwnLeadsQuery,
   useLeadAssignMutation,
   useUpdateLeadMutation,
+  useGetDirectLeadsQuery,
 } = leadApi;

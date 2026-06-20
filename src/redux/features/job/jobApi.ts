@@ -30,7 +30,7 @@ const jobApi = jobApiSlice.injectEndpoints({
     }),
     getRunningJobs: builder.query<IncomingQueryType<TJob>, any>({
       query: (params) => ({
-        url: "/tuition-jobs/admin",
+        url: "/tuition-jobs/admin/running",
         method: "GET",
         params,
       }),
