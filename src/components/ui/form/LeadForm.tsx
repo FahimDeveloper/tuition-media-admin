@@ -13,20 +13,42 @@ const LeadForm = ({ form, loading, onFinish, record }: TProp) => {
       form={form}
       layout="vertical"
       initialValues={{}}
-      className="space-y-4"
+      className="space-y-5"
     >
-      <div className="grid grid-cols-2 gap-5"></div>
+      <div className="grid grid-cols-2 gap-5">
+        <Form.Item
+          name="name"
+          label="Name"
+          className="m-0!"
+          rules={[{ required: true }]}
+        >
+          <Input size="large" placeholder="Enter lead name" />
+        </Form.Item>
+        <Form.Item
+          name="contact"
+          label="Contact"
+          className="m-0!"
+          rules={[{ required: true }]}
+        >
+          <Input size="large" placeholder="Enter lead phone" />
+        </Form.Item>
+      </div>
       <Form.Item
         className="m-0"
-        name="description"
-        label="Description"
+        name="details"
+        label="Details"
         rules={[{ required: true }]}
       >
         <Input.TextArea rows={4} placeholder="Enter a small description" />
       </Form.Item>
       <div className="flex justify-end">
-        <Form.Item>
-          <Button className="primary-btn" htmlType="submit" loading={loading}>
+        <Form.Item className="m-0!">
+          <Button
+            type="primary"
+            size="large"
+            htmlType="submit"
+            loading={loading}
+          >
             {record && Object.keys(record).length > 0
               ? "Update Academy"
               : "Create Academy"}

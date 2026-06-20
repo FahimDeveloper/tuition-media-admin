@@ -24,9 +24,8 @@ const DataTable = memo(({ columns, data, loading }: TProps) => {
         {...props}
         ref={tableRef}
         columns={columns}
-        rowKey={(record) => record?.id}
+        rowKey={(record) => record?._id}
         dataSource={data}
-        scroll={{ x: "calc(700px + 30%)", y: "calc(100vh - 23em)" }}
       />
     </>
   );

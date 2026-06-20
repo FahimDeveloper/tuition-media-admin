@@ -13,3 +13,10 @@ export const leadApiSlice = createApi({
   tagTypes: ["NewLeads", "AssignedLeads", "AssignedOwnLeads"],
   endpoints: () => ({}),
 });
+
+export const jobApiSlice = createApi({
+  reducerPath: "jobApi",
+  baseQuery: baseQueryWithRefreshToken,
+  tagTypes: ["NewJobs", "RunningJobs"],
+  endpoints: () => ({}),
+});

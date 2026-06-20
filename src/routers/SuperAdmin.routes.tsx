@@ -1,5 +1,6 @@
 import { lazy } from "react";
 import LazyLoad from "../components/common/LozyLoad";
+import Jobs from "../pages/Jobs/Jobs";
 
 const NewLeads = LazyLoad(
   lazy(() => import("../pages/Leads/NewLeads/NewLeads")),
@@ -28,18 +29,33 @@ export const superAdminPaths = [
     children: [
       {
         name: "New Leads",
-        path: "new",
+        path: "new-leads",
         element: <NewLeads />,
       },
       {
         name: "Assigned Leads",
-        path: "assigned",
+        path: "assigned-leads",
         element: <AssignedLeads />,
       },
       {
         name: "Converted Leads",
-        path: "converted",
+        path: "converted-leads",
         element: <ConvertedLeads />,
+      },
+    ],
+  },
+  {
+    name: "Requirements",
+    children: [
+      {
+        name: "Requirements",
+        path: "jobs",
+        element: <Jobs />,
+      },
+      {
+        name: "Running Jobs",
+        path: "running-jobs",
+        element: <Jobs />,
       },
     ],
   },

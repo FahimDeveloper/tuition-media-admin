@@ -1,6 +1,6 @@
 export type IncomingQueryType<T> = {
   message: string;
-  count: number;
+  total: number;
   results: T[];
 };
 

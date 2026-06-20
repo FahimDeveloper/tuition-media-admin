@@ -42,3 +42,7 @@ body {
 .ant-table-wrapper .ant-table-thead > tr > th {
   @apply bg-[#C8DAD6];
 }
+
+/* .ant-table-thead > tr > th.ant-table-cell-scrollbar {
+  display: none !important;
+} */

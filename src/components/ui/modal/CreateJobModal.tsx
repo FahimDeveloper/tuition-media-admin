@@ -1,17 +1,23 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Modal } from "antd";
-import { useEffect, useState } from "react";
 import { useForm } from "antd/es/form/Form";
+import { useEffect, useState } from "react";
+import { useCreateJobMutation } from "../../../redux/features/job/jobApi";
 import Swal from "sweetalert2";
-import { useCreateLeadMutation } from "../../../redux/features/lead/leadApi";
-import LeadForm from "../form/LeadForm";
+import { Button, Modal } from "antd";
+import JobForm from "../form/JobForm";
+import { IoCreateOutline } from "react-icons/io5";
+import { selectCurrentUser } from "../../../redux/features/auth/authSlice";
+import { useSelector } from "react-redux";
 
-const CreateLeadModal = () => {
+const CreateJobModal = ({ lead }: { lead: string }) => {
   const [open, setModalOpen] = useState(false);
   const [form] = useForm();
+  const user = useSelector(selectCurrentUser);
   const [create, { data, isLoading, isSuccess, isError, error }] =
-    useCreateLeadMutation();
+    useCreateJobMutation();
   const onFinish = (values: any) => {
+    console.log(values);
+    values.lead_from = lead;
+    values.posted_by = user?._id;
     create(values);
   };
   useEffect(() => {
@@ -42,23 +48,28 @@ const CreateLeadModal = () => {
   };
   return (
     <>
-      <Button onClick={() => setModalOpen(true)} type="primary" size="large">
-        Add Lead
+      <Button
+        type="primary"
+        size="medium"
+        onClick={() => setModalOpen(true)}
+        className="w-full flex gap-1 justify-center items-center"
+      >
+        <IoCreateOutline className="size-5 text-white" /> Create Job
       </Button>
       <Modal
-        width={800}
+        width={900}
         footer={null}
-        title="Create New Leads"
+        title="Create New Job"
         centered
         open={open}
         onCancel={onCancel}
       >
         <div className="my-5">
-          <LeadForm form={form} loading={isLoading} onFinish={onFinish} />
+          <JobForm form={form} loading={isLoading} onFinish={onFinish} />
         </div>
       </Modal>
     </>
   );
 };
 
-export default CreateLeadModal;
+export default CreateJobModal;

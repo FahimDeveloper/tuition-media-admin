@@ -1,6 +1,7 @@
 import type { TAdmin } from "./admin.types";
 
 export type TLead = {
+  _id: string;
   name: string;
   contact: string;
   details: string;
@@ -13,4 +14,6 @@ export type TLead = {
     note?: string;
     doneBy: TAdmin;
   }[];
+  createdAt: Date;
+  updatedAt: Date;
 };

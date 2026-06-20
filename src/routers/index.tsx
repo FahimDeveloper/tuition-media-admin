@@ -5,6 +5,7 @@ import PrivetRoute from "./PrivateRoute";
 import App from "../App";
 import { routesGenerator } from "../utils/routesGenerator";
 import { superAdminPaths } from "./SuperAdmin.routes";
+import { userRole } from "../utils/role";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
   {
     path: "/super_admin",
     element: (
-      <PrivetRoute>
+      <PrivetRoute role={userRole.SUPER_ADMIN}>
         <App />
       </PrivetRoute>
     ),

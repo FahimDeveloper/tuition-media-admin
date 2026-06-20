@@ -9,7 +9,7 @@ type TProps = {
 
 const DataPagination = ({ onChange, page, total, limit }: TProps) => {
   return (
-    <>
+    <div className="sticky -bottom-2 z-10 bg-white py-2">
       <Pagination
         style={{
           display: "flex",
@@ -22,7 +22,7 @@ const DataPagination = ({ onChange, page, total, limit }: TProps) => {
         pageSize={limit}
         showSizeChanger={true}
       />
-    </>
+    </div>
   );
 };
 

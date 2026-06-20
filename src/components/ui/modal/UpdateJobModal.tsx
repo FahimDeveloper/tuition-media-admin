@@ -1,18 +1,18 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Modal } from "antd";
-import { useEffect, useState } from "react";
 import { useForm } from "antd/es/form/Form";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { useCreateLeadMutation } from "../../../redux/features/lead/leadApi";
-import LeadForm from "../form/LeadForm";
+import { Button, Modal } from "antd";
+import { CiEdit } from "react-icons/ci";
+import JobForm from "../form/JobForm";
+import { useUpdateJobMutation } from "../../../redux/features/job/jobApi";
 
-const CreateLeadModal = () => {
+const UpdateJobModal = ({ record }: any) => {
   const [open, setModalOpen] = useState(false);
   const [form] = useForm();
-  const [create, { data, isLoading, isSuccess, isError, error }] =
-    useCreateLeadMutation();
+  const [update, { data, isLoading, isSuccess, isError, error }] =
+    useUpdateJobMutation();
   const onFinish = (values: any) => {
-    create(values);
+    update({ id: record?._id, body: values });
   };
   useEffect(() => {
     if (isSuccess) {
@@ -25,7 +25,6 @@ const CreateLeadModal = () => {
         iconColor: "#0ABAC3",
       });
       setModalOpen(false);
-      form.resetFields();
     }
     if (isError) {
       Swal.fire({
@@ -36,29 +35,35 @@ const CreateLeadModal = () => {
       });
     }
   }, [data, isSuccess, isError, form, error]);
-  const onCancel = () => {
-    setModalOpen(false);
-    form.resetFields();
-  };
   return (
     <>
-      <Button onClick={() => setModalOpen(true)} type="primary" size="large">
-        Add Lead
+      <Button
+        type="primary"
+        size="medium"
+        onClick={() => setModalOpen(true)}
+        className="w-full flex gap-1 justify-center items-center"
+      >
+        <CiEdit className="size-5 text-white" /> Update
       </Button>
       <Modal
         width={800}
         footer={null}
-        title="Create New Leads"
+        title="Update Job"
         centered
         open={open}
-        onCancel={onCancel}
+        onCancel={() => setModalOpen(false)}
       >
         <div className="my-5">
-          <LeadForm form={form} loading={isLoading} onFinish={onFinish} />
+          <JobForm
+            record={record}
+            form={form}
+            loading={isLoading}
+            onFinish={onFinish}
+          />
         </div>
       </Modal>
     </>
   );
 };
 
-export default CreateLeadModal;
+export default UpdateJobModal;
